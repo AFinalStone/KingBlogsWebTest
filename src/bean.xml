@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+
+	<!-- 配置一个 bean -->
+	<bean id="beanByProperty" class="com.shi.springmvc.bean.Bean">
+		<!-- 为属性赋值 -->
+		<property name="age" value="12"></property>
+		<property name="name" value="李天水"></property>
+		<property name="flag" value="false"></property>
+	</bean>
+
+	<bean id="beanByConstructor" class="com.shi.springmvc.bean.Bean">
+		<!-- 构造器赋值 -->
+		<constructor-arg value="15"></constructor-arg>
+		<constructor-arg value="华凤珊"></constructor-arg>
+		<constructor-arg value="true"></constructor-arg>
+	</bean>
+
+	<bean id="beanByConstructor01" class="com.shi.springmvc.bean.Bean">
+		<!-- 构造器赋值01 -->
+		<constructor-arg value="15" index="0"></constructor-arg>
+		<constructor-arg value="华凤珊" index="1" type="java.lang.String"></constructor-arg>
+	</bean>
+
+	<bean id="beanByConstructor02" class="com.shi.springmvc.bean.Bean">
+		<!-- 构造器赋值02 -->
+		<constructor-arg value="15" index="0"></constructor-arg>
+		<constructor-arg value="true" index="1" type="boolean"></constructor-arg>
+	</bean>
+
+	<bean id="beanParentByProp01" class="com.shi.springmvc.bean.BeanParent">
+		<!-- 为属性赋值 -->
+		<property name="country" value="12"></property>
+		<property name="language" value="李天水"></property>
+		<property name="bean" ref="beanByProperty"></property>
+	</bean>
+
+	<bean id="beanParentByProp02" class="com.shi.springmvc.bean.BeanParent">
+		<!-- 为属性赋值 -->
+		<property name="country" value="12"></property>
+		<property name="language" value="李天水"></property>
+		<property name="bean">
+
+			<bean class="com.shi.springmvc.bean.Bean">
+				<constructor-arg value="15"></constructor-arg>
+				<constructor-arg value="华凤珊"></constructor-arg>
+				<constructor-arg value="true"></constructor-arg>
+			</bean>
+
+		</property>
+	</bean>
+</beans>
